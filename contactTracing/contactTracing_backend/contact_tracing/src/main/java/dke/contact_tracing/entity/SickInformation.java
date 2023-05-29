@@ -26,12 +26,17 @@ public class SickInformation {
     @Temporal(TemporalType.DATE)
     private Date quarantineEndDate;
 
+    @Temporal(TemporalType.DATE)
+    private Date positiveCovidTestDate;
+
+    private boolean potential;
+
     public SickInformation() {
     }
 
     public SickInformation(
             int id, boolean symptoms, boolean sick, Date symptomStartingDate, Date covidTestDate, Date medicationDate,
-            boolean quarantine, Date quarantineStartDate, Date quarantineEndDate
+            boolean quarantine, Date quarantineStartDate, Date quarantineEndDate, Date positiveCovidTestDate, boolean potential
     ) {
         this.id = id;
         this.symptoms = symptoms;
@@ -42,6 +47,8 @@ public class SickInformation {
         this.quarantine = quarantine;
         this.quarantineStartDate = quarantineStartDate;
         this.quarantineEndDate = quarantineEndDate;
+        this.positiveCovidTestDate = positiveCovidTestDate;
+        this.potential = potential;
     }
 
     public int getId() {

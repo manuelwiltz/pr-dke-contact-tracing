@@ -25,6 +25,12 @@ import {CalendarModule} from "primeng/calendar";
 import {FormsModule} from "@angular/forms";
 import {InputTextModule} from "primeng/inputtext";
 import {InputNumberModule} from "primeng/inputnumber";
+import { EditPersonComponent } from './components/contact-tracer/edit-person/edit-person.component';
+import { SickInfoComponent } from './components/contact-tracer/sick-info/sick-info.component';
+import {InputSwitchModule} from "primeng/inputswitch";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MultiSelectModule} from "primeng/multiselect";
+import { ClusterComponent } from './components/contact-tracer/cluster/cluster.component';
 
 @NgModule({
   declarations: [
@@ -35,10 +41,14 @@ import {InputNumberModule} from "primeng/inputnumber";
     CTHomeComponent,
     MedicationAppointmentComponent,
     BhDashboardComponent,
-    BhHomeComponent
+    BhHomeComponent,
+    EditPersonComponent,
+    SickInfoComponent,
+    ClusterComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     ButtonModule,
@@ -50,7 +60,9 @@ import {InputNumberModule} from "primeng/inputnumber";
     CalendarModule,
     FormsModule,
     InputTextModule,
-    InputNumberModule
+    InputNumberModule,
+    InputSwitchModule,
+    MultiSelectModule,
   ],
   providers: [
     HttpClientModule,

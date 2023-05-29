@@ -6,10 +6,12 @@
       <th>SVNR</th>
       <th>Vorname</th>
       <th>Nachname</th>
-      <th>Telefonnummer</th>
       <th>Krank</th>
       <th>Symptome</th>
       <th>Quarantäne</th>
+      <th>Gesundh. Daten</th>
+      <th>Löschen</th>
+      <th>Bearbeiten</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-person>
@@ -17,10 +19,24 @@
       <td>{{person.svnr}}</td>
       <td>{{person.firstName}}</td>
       <td>{{person.lastName}}</td>
-      <td>{{person.phoneNumber}}</td>
-      <td>{{person.sickInformation.sick}}</td>
-      <td>{{person.sickInformation.symptoms}}</td>
-      <td>{{person.sickInformation.quarantine}}</td>
+      <td>{{person.sickInformation.sick ? 'Ja' : 'Nein'}}</td>
+      <td>{{person.sickInformation.symptoms ? 'Ja' : 'Nein'}}</td>
+      <td>{{person.sickInformation.quarantine ? 'Ja' : 'Nein'}}</td>
+      <td>
+        <span [routerLink]="['/sickInfo', person.svnr]">
+          <span class="pi pi-user-edit"></span>
+        </span>
+      </td>
+      <td>
+        <span (click)="deletePerson(person.svnr)">
+          <span class="pi pi-delete-left"></span>
+        </span>
+      </td>
+      <td>
+        <span [routerLink]="['/edit', person.svnr]">
+          <span class="pi pi-user-edit"></span>
+        </span>
+      </td>
     </tr>
   </ng-template>
 </p-table>

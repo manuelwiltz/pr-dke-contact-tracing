@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface PersonRepository extends JpaRepository<Person, Integer> {
 
-    List<Person> findAllBySvnr(Integer[] svnrs);
+    List<Person> findAllBySvnr(int svnr);
+
+    Person findBySvnr(Integer svnr);
 
 }

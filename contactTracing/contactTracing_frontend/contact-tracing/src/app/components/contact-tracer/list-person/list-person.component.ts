@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {PersonService} from "../../../services/person.service";
 import {Person} from "../../../entities/Person";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-list-person',
@@ -11,7 +12,7 @@ export class ListPersonComponent {
 
   public people: Person[] = [];
 
-  constructor(private personService: PersonService) {
+  constructor(private personService: PersonService, private router: Router) {
   }
 
   ngOnInit() {
@@ -19,6 +20,12 @@ export class ListPersonComponent {
       this.people = people;
       console.log(this.people);
     })
+  }
+
+  deletePerson(svnr: number) {
+    this.personService.deletePerson(svnr).subscribe(() => {
+      this.router.navigate(['ct-home']);
+    });
   }
 
 }

@@ -7,4 +7,6 @@ export type SickInformation = {
   quarantine: boolean;
   quarantineStartDate?: Date;
   quarantineEndDate?: Date;
+  positiveCovidTestDate?: Date;
+  potential?: boolean;
 }

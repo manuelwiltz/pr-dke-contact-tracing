@@ -1,10 +1,25 @@
-<p-toolbar>
-  <div class="p-toolbar-group-start">
-    <p>Contact Tracing</p>
-  </div>
+<div *ngIf="role == 'CT'">
+  <p-toolbar>
+    <div class="p-toolbar-group-start">
+      <p>Contact Tracing</p>
+    </div>
+  </p-toolbar>
 
-  <div class="p-toolbar-group-end">
+  <div class="card">
+    <p-menubar [model]="CTItems"></p-menubar>
   </div>
-</p-toolbar>
+</div>
+
+<div *ngIf="role == 'BH'">
+  <p-toolbar>
+    <div class="p-toolbar-group-start">
+      <p>BH</p>
+    </div>
+  </p-toolbar>
+
+  <div class="card">
+    <p-menubar [model]="BHItems"></p-menubar>
+  </div>
+</div>
 
 <router-outlet></router-outlet>

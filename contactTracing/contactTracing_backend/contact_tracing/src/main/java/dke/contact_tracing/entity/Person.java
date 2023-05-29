@@ -17,7 +17,7 @@ public class Person {
     private String firstName;
     private String lastName;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
     @Temporal(TemporalType.DATE)
@@ -26,7 +26,7 @@ public class Person {
     private String email;
     private String phoneNumber;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     private SickInformation sickInformation;
 
     @ElementCollection
@@ -48,6 +48,14 @@ public class Person {
         this.phoneNumber = phoneNumber;
         this.sickInformation = sickInformation;
         this.contacts = contacts;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getSvnr() {

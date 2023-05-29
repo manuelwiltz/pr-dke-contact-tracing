@@ -14,9 +14,11 @@ export class LoginComponent {
 
   selectRole(role: Role) {
     this.authService.setRole(role);
-    if (role === "CT") {
+
+    if (this.authService.getRole() === "CT") {
       this.router.navigate(['ct-home']);
-    } else {
+    } else if (this.authService.getRole() === "BH") {
+      console.log('BH')
       this.router.navigate(['bh-home']);
     }
   }

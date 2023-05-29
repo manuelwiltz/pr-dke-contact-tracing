@@ -1,4 +1,4 @@
-<h2>Person hinzufügen</h2>
+<h2>Person updaten</h2>
 <h3>Allgemeine Daten</h3>
 <div class="p-fluid grid">
   <div class="field col-12 md:col-4">
@@ -25,7 +25,7 @@
   <div class="field col-12 md:col-4">
         <span class="p-float-label p-input-icon-left">
           <i class="pi pi-user"></i>
-            <p-calendar id="calendar" inputId="calendar" [(ngModel)]="person.birthday"></p-calendar>
+            <p-calendar id="calendar" dateFormat="yy-mm-dd" inputId="calendar" [(ngModel)]="person.birthday"></p-calendar>
             <label for="calendar">Geburtstag</label>
         </span>
   </div>
@@ -46,6 +46,7 @@
 </div>
 
 <h3>Addresse</h3>
+
 <div class="p-fluid grid">
   <div class="field col-12 md:col-4">
         <span class="p-float-label p-input-icon-left">
@@ -84,11 +85,4 @@
   </div>
 </div>
 
-<h3>Kontakte</h3>
-<div class="p-fluid grid">
-  <div class="field col-12 md:col-4">
-    <p-multiSelect [options]="allPeople" (onChange)="updateSelectedPeople()" [(ngModel)]="selectedPeople" optionLabel="svnr"></p-multiSelect>
-  </div>
-</div>
-
-<button pButton type="button" label="Save" (click)="savePerson()" class="p-button-success"></button>
+<button pButton type="button" label="Update" (click)="updatePerson()" class="p-button-success"></button>
