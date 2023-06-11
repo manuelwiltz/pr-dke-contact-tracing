@@ -45,7 +45,12 @@ export class AppComponent {
           disabled: true,
         },
         {
-          label: 'Log out',
+          label: 'Cluster',
+          icon: 'pi pi-fw pi-user',
+          routerLink: '/cluster'
+        },
+        {
+          label: 'Rolle wechseln',
           icon: 'pi pi-fw pi-power-off',
           routerLink: '/login'
         }

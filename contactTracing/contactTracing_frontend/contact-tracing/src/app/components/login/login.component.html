@@ -19,6 +19,20 @@
         <li>Dashboard</li>
         <li>Medikamenten Termine einsehen</li>
       </ul>
+      <div class="p-fluid grid">
+        <div class="field col-12 md:col-12">
+        <span class="p-float-label p-input-icon-left">
+            <i class="pi pi-home"></i>
+            <p-dropdown id="state" [options]="states" (onChange)="changeCounties($event)"  [(ngModel)]="selectedState"></p-dropdown>
+        </span>
+        </div>
+        <div class="field col-12 md:col-12">
+        <span class="p-float-label p-input-icon-left">
+            <i class="pi pi-home"></i>
+            <p-dropdown id="county" [options]="counties" [(ngModel)]="selectedCounty"></p-dropdown>
+        </span>
+        </div>
+      </div>
       <ng-template pTemplate="footer">
         <p-button label="Login" (click)="selectRole('BH')" icon="pi pi-check"></p-button>
       </ng-template>

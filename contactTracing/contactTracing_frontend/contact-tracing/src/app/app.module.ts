@@ -31,6 +31,7 @@ import {InputSwitchModule} from "primeng/inputswitch";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MultiSelectModule} from "primeng/multiselect";
 import { ClusterComponent } from './components/contact-tracer/cluster/cluster.component';
+import {DropdownModule} from "primeng/dropdown";
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { ClusterComponent } from './components/contact-tracer/cluster/cluster.co
     InputNumberModule,
     InputSwitchModule,
     MultiSelectModule,
+    DropdownModule,
   ],
   providers: [
     HttpClientModule,

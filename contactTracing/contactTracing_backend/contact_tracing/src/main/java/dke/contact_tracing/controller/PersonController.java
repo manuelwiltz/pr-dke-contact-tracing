@@ -35,15 +35,6 @@ public class PersonController {
         return service.getPersonBySvnr(svnr);
     }
 
-    @PutMapping("/persons/")
-    @Operation(summary = "Get a list of persons by their social security numbers.", description = "Returns a list persons by their social security numbers.")
-    public List<Person> getPersonsBySvnr(
-            @Parameter(description = "Unique social security numbers", example = "[2345678, 43503945, 4503954]")
-            @RequestBody int[] svnrs
-    ) {
-        return service.getPersonsBySvnr(svnrs);
-    }
-
     @GetMapping("/person/{svnr}/contacts")
     @Operation(summary = "Get the contacts of a person.", description = "Returns a list of social security numbers to identify their contacts.")
     public List<String> getContactsFromPerson(
@@ -60,6 +51,44 @@ public class PersonController {
             @PathVariable int svnr
     ) {
         return service.getPersonBySvnr(svnr).getSickInformation();
+    }
+
+    @GetMapping("/persons/{state}/{county}")
+    @Operation(summary = "Get list of people by state and county.", description = "Returns a list of people by state and county.")
+    public List<Person> getPeopleByStateAndCounty(
+            @Parameter(description = "State (Bundesland)", example = "Upper Austria")
+            @PathVariable String state,
+            @Parameter(description = "County (Bezirk)", example = "Linz")
+            @PathVariable String county
+    ) {
+        return service.getPeopleByStateAndCounty(state, county);
+    }
+
+    @GetMapping("/persons/length")
+    @Operation(summary = "Get the total count of people.", description = "Returns a number containing the sum of all people.")
+    public int getPeopleLength(
+    ) {
+        return service.getPersons().size();
+    }
+
+    @GetMapping("/persons/length/{state}/{county}")
+    @Operation(summary = "Get list of people by state and county.", description = "Returns a list of people by state and county.")
+    public int getTotalAmountOfPeopleByStateAndCounty(
+            @Parameter(description = "State (Bundesland)", example = "Upper Austria")
+            @PathVariable String state,
+            @Parameter(description = "County (Bezirk)", example = "Linz")
+            @PathVariable String county
+    ) {
+        return service.getPeopleByStateAndCounty(state, county).size();
+    }
+
+    @PutMapping("/persons/")
+    @Operation(summary = "Get a list of persons by their social security numbers.", description = "Returns a list persons by their social security numbers.")
+    public List<Person> getPersonsBySvnr(
+            @Parameter(description = "Unique social security numbers", example = "[2345678, 43503945, 4503954]")
+            @RequestBody int[] svnrs
+    ) {
+        return service.getPersonsBySvnr(svnrs);
     }
 
     @PutMapping("/person/{svnr}")

@@ -18,7 +18,6 @@ export class ListPersonComponent {
   ngOnInit() {
     this.personService.getPeople().subscribe((people) => {
       this.people = people;
-      console.log(this.people);
     })
   }
 

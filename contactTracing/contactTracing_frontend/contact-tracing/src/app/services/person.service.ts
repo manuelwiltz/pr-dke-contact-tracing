@@ -26,8 +26,23 @@ export class PersonService {
   }
 
   public getPeopleBySvnr(svnrs: number[]): Observable<Person[]> {
-    console.log('svnrs: ', svnrs);
     return this.http.put<Person[]>(this.baseurl + 'persons/', svnrs);
+  }
+
+  public getPeopleByStateAndCounty(state: string, county: string): Observable<Person[]> {
+    return this.http.get<Person[]>(this.baseurl + `persons/${state}/${county}`);
+  }
+
+  public getTotalAmountOfPeople(): Observable<number> {
+    return this.http.get<number>(this.baseurl + 'persons/length');
+  }
+
+  public getTotalAmountOfPeopleByStateAndCounty(state: string, county: string): Observable<number> {
+    return this.http.get<number>(this.baseurl + `persons/length/${state}/${county}`);
+  }
+
+  public getMedicationAppointmentsByStateAndCounty(state: string, county: string): Observable<number> {
+    return this.http.get<number>(this.baseurl + `medication/length/${state}/${county}`);
   }
 
   public addPerson(person: Person): Observable<Person> {
