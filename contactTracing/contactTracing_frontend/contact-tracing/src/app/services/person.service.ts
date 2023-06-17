@@ -9,6 +9,7 @@ import {Person} from "../entities/Person";
 export class PersonService {
 
   private readonly baseurl = 'http://localhost:9191/';
+  private readonly medicationURL = 'http://localhost:8080/';
 
   constructor(private http: HttpClient) {
   }
