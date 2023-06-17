@@ -12,7 +12,7 @@ public class Person {
     @GeneratedValue
     private int id;
 
-    private int svnr;
+    private long svnr;
 
     private String firstName;
     private String lastName;
@@ -58,11 +58,11 @@ public class Person {
         this.id = id;
     }
 
-    public int getSvnr() {
+    public long getSvnr() {
         return svnr;
     }
 
-    public void setSvnr(int id) {
+    public void setSvnr(long id) {
         this.svnr = id;
     }
 

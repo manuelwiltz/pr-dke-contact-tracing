@@ -9,7 +9,7 @@ import {Person} from "../entities/Person";
 export class PersonService {
 
   private readonly baseurl = 'http://localhost:9191/';
-  private readonly medicationURL = 'http://localhost:8080/';
+  private readonly medicationURL = 'http://localhost:9192/';
 
   constructor(private http: HttpClient) {
   }
@@ -43,7 +43,10 @@ export class PersonService {
   }
 
   public getMedicationAppointmentsByStateAndCounty(state: string, county: string): Observable<number> {
-    return this.http.get<number>(this.baseurl + `medication/length/${state}/${county}`);
+    if (county === 'Linz') {
+      county = 'Linz-Stadt';
+    }
+    return this.http.get<number>(this.baseurl + `counties/${county}/nr-persons-medication/`);
   }
 
   public addPerson(person: Person): Observable<Person> {

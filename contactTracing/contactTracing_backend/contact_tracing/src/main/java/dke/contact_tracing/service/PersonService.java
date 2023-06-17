@@ -8,8 +8,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,11 +27,11 @@ public class PersonService {
         return repository.findAll();
     }
 
-    public Person getPersonBySvnr(int svnr) {
+    public Person getPersonBySvnr(long svnr) {
         return repository.findBySvnr(svnr);
     }
 
-    public List<Person> getPersonsBySvnr(int[] svnrs) {
+    public List<Person> getPersonsBySvnr(long[] svnrs) {
         List<Person> personList = new ArrayList<>();
         Arrays.stream(svnrs).forEach(value -> personList.add(repository.findBySvnr(value)));
 
@@ -48,12 +46,12 @@ public class PersonService {
         ).collect(Collectors.toList());
     }
 
-    public void deletePerson(int svnr) {
+    public void deletePerson(long svnr) {
         List<Person> person = repository.findAllBySvnr(svnr);
         person.stream().forEach(person1 -> repository.deleteById(person1.getId()));
     }
 
-    public Person updatePerson(int svnr, Person person) {
+    public Person updatePerson(long svnr, Person person) {
         return repository
                 .findById(person.getId())
                 .map(value -> {
@@ -74,17 +72,16 @@ public class PersonService {
                 });
     }
 
-    public Person updateSickInformation(int svnr, SickInformation sickInformation) {
-        return repository
-                .findById(svnr)
-                .map(value -> {
-                    value.setSickInformation(sickInformation);
+    public Person updateSickInformation(long svnr, SickInformation sickInformation) {
+        Person person = repository.findBySvnr(svnr);
 
-                    return repository.save(value);
-                })
-                .orElseGet(() -> {
-                    return null;
-                });
+        if (person != null) {
+            person.setSickInformation(sickInformation);
+            return repository.save(person);
+        }
+
+        return person;
+
     }
 
     @Scheduled(cron = "0 0 6 * * *")

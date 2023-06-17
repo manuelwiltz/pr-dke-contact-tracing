@@ -4,7 +4,7 @@
   <div class="field col-12 md:col-4">
         <span class="p-float-label p-input-icon-left">
           <i class="pi pi-user"></i>
-            <input type="number" id="svnr" pInputText [(ngModel)]="person.svnr">
+            <input type="number" [minLength]="10" [maxLength]="10" id="svnr" pInputText [(ngModel)]="person.svnr">
             <label for="svnr">SVNR</label>
         </span>
   </div>

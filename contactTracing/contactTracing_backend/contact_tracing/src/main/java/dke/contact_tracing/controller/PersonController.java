@@ -30,7 +30,7 @@ public class PersonController {
     @Operation(summary = "Get a person by their social security number.", description = "Returns a person by their social security number.")
     public Person getPersonBySvnr(
             @Parameter(description = "Unique social security number", example = "12345678")
-            @PathVariable int svnr
+            @PathVariable long svnr
     ) {
         return service.getPersonBySvnr(svnr);
     }
@@ -39,7 +39,7 @@ public class PersonController {
     @Operation(summary = "Get the contacts of a person.", description = "Returns a list of social security numbers to identify their contacts.")
     public List<String> getContactsFromPerson(
             @Parameter(description = "Unique social security number", example = "12345678")
-            @PathVariable int svnr
+            @PathVariable long svnr
     ) {
         return service.getPersonBySvnr(svnr).getContacts();
     }
@@ -48,7 +48,7 @@ public class PersonController {
     @Operation(summary = "Get the sick information of a person.", description = "Returns the sick information of a person.")
     public SickInformation getSickInformationFromPerson(
             @Parameter(description = "Unique social security number", example = "12345678")
-            @PathVariable int svnr
+            @PathVariable long svnr
     ) {
         return service.getPersonBySvnr(svnr).getSickInformation();
     }
@@ -86,7 +86,7 @@ public class PersonController {
     @Operation(summary = "Get a list of persons by their social security numbers.", description = "Returns a list persons by their social security numbers.")
     public List<Person> getPersonsBySvnr(
             @Parameter(description = "Unique social security numbers", example = "[2345678, 43503945, 4503954]")
-            @RequestBody int[] svnrs
+            @RequestBody long[] svnrs
     ) {
         return service.getPersonsBySvnr(svnrs);
     }
@@ -96,7 +96,7 @@ public class PersonController {
     public Person updatePerson(
             @RequestBody Person person,
             @Parameter(description = "Unique social security number", example = "12345678")
-            @PathVariable int svnr
+            @PathVariable long svnr
     ) {
         return service.updatePerson(svnr, person);
     }
@@ -107,7 +107,7 @@ public class PersonController {
     public SickInformation updateSickInformationFromPerson(
             @RequestBody SickInformation sickInformation,
             @Parameter(description = "Unique social security number", example = "12345678")
-            @PathVariable int svnr
+            @PathVariable long svnr
     ) {
         return service.updateSickInformation(svnr, sickInformation).getSickInformation();
     }
@@ -122,7 +122,7 @@ public class PersonController {
     @Operation(summary = "Delete a person.", description = "Deletes and returns the person.")
     public void deletePerson(
             @Parameter(description = "Unique social security number", example = "12345678")
-            @PathVariable int svnr
+            @PathVariable long svnr
     ) {
         service.deletePerson(svnr);
     }
