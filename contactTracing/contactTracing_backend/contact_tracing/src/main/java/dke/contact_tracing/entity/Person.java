@@ -36,7 +36,7 @@ public class Person {
     }
 
     public Person(
-            int svnr, String firstName, String lastName, Address address, Date birthday, String email,
+            long svnr, String firstName, String lastName, Address address, Date birthday, String email,
             String phoneNumber, SickInformation sickInformation, List<String> contacts
     ) {
         this.svnr = svnr;
