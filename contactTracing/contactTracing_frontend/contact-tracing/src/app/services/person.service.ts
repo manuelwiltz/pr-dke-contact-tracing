@@ -43,10 +43,7 @@ export class PersonService {
   }
 
   public getMedicationAppointmentsByStateAndCounty(state: string, county: string): Observable<number> {
-    if (county === 'Linz') {
-      county = 'Linz-Stadt';
-    }
-    return this.http.get<number>(this.baseurl + `counties/${county}/nr-persons-medication/`);
+    return this.http.get<number>(this.medicationURL + `counties/${county}/nr-persons-medication`);
   }
 
   public addPerson(person: Person): Observable<Person> {

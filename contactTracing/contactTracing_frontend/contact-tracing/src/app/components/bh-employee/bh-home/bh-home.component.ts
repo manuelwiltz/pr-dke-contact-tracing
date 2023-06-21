@@ -38,14 +38,12 @@ export class BhHomeComponent {
       forkJoin([
         this.personService.getPeople(),
         this.personService.getPeopleByStateAndCounty(this.selectedState, this.selectedCounty),
-        this.personService.getTotalAmountOfPeopleByStateAndCounty(this.selectedState, this.selectedCounty),
-        this.personService.getMedicationAppointmentsByStateAndCounty(this.selectedState, this.selectedCounty)
+        this.personService.getTotalAmountOfPeopleByStateAndCounty(this.selectedState, this.selectedCounty)
       ])
-        .subscribe(([people, countyPeople, size, medicationAppointmentSize]) => {
+        .subscribe(([people, countyPeople, size]) => {
           this.people = people;
           this.countyPeople = countyPeople;
           this.totalAmountOfPeople = size;
-          this.medicationAppointmentSize = medicationAppointmentSize;
 
           this.clusterCount = this.clusterService.getCovidClusters(people).clusterCount;
 
@@ -53,6 +51,12 @@ export class BhHomeComponent {
           this.symptomPeople = this.countyPeople.filter(person => person.sickInformation.symptoms).length;
           this.quarantinedPeople = this.countyPeople.filter(person => person.sickInformation.quarantine).length;
           this.potentialPeople = this.countyPeople.filter(person => person.sickInformation.potential).length;
+
+
+          this.personService.getMedicationAppointmentsByStateAndCounty(this.selectedState, this.selectedCounty)
+            .subscribe((medicationAppointmentSize) => {
+              this.medicationAppointmentSize = medicationAppointmentSize;
+            })
         });
     });
   }
