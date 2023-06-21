@@ -35,10 +35,9 @@ public class SickInformation {
     }
 
     public SickInformation(
-            int id, boolean symptoms, boolean sick, Date symptomStartingDate, Date covidTestDate, Date medicationDate,
+             boolean symptoms, boolean sick, Date symptomStartingDate, Date covidTestDate, Date medicationDate,
             boolean quarantine, Date quarantineStartDate, Date quarantineEndDate, Date positiveCovidTestDate, boolean potential
     ) {
-        this.id = id;
         this.symptoms = symptoms;
         this.sick = sick;
         this.symptomStartingDate = symptomStartingDate;
@@ -121,6 +120,22 @@ public class SickInformation {
 
     public void setQuarantineEndDate(Date quarantineEndDate) {
         this.quarantineEndDate = quarantineEndDate;
+    }
+
+    public Date getPositiveCovidTestDate() {
+        return positiveCovidTestDate;
+    }
+
+    public void setPositiveCovidTestDate(Date positiveCovidTestDate) {
+        this.positiveCovidTestDate = positiveCovidTestDate;
+    }
+
+    public boolean isPotential() {
+        return potential;
+    }
+
+    public void setPotential(boolean potential) {
+        this.potential = potential;
     }
 
     @Override

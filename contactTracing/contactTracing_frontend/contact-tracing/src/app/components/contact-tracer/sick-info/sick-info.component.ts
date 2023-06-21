@@ -25,11 +25,14 @@ export class SickInfoComponent {
       this.id = +params['id'];
       this.personService.getPerson(this.id).subscribe((person) => {
         this.person = person;
+
+        console.log(person);
+
         if (this.person.contacts.length > 0) {
           this.getContacts();
         }
 
-        this.updatePotential();
+        // this.updatePotential();
       });
     });
   }

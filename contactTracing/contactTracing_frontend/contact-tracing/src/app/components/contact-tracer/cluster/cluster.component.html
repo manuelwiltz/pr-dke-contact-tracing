@@ -1,1 +1,26 @@
-<p>cluster works!</p>
+<h2>Cluster Übersicht</h2>
+
+<div class="p-fluid grid">
+  <div class="field col-12 md:col-4">
+    <p-card header="Aktuelle Cluster Anzahl">
+      <p class="m-0">
+          <span class="value" [ngStyle]="{'color': getClusterColor()}">
+            {{clusterCount}}
+          </span>
+      </p>
+    </p-card>
+  </div>
+</div>
+
+<div class="p-fluid grid">
+  <div class="field col-12 md:col-4" *ngFor="let cluster of clusters">
+    <p-card header="Cluster">
+      <p>
+        Alle Kontakte des Clusters:
+      </p>
+      <ul>
+        <li *ngFor="let contact of cluster.contacts">{{ contact }}</li>
+      </ul>
+    </p-card>
+  </div>
+</div>
