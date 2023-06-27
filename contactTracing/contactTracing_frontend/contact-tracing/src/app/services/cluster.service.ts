@@ -11,33 +11,19 @@ export class ClusterService {
 
   getCovidClusters(people: Person[]): { clusters: string[][], clusterCount: number } {
     const clusters: string[][] = [];
-    const infectedContacts: { [svnr: string]: number } = {};
+    const visited: Set<number> = new Set();
 
     for (const person of people) {
-      if (person.sickInformation.sick) {
-        for (const contact of person.contacts) {
-          infectedContacts[contact] = (infectedContacts[contact] || 0) + 1;
-        }
-      }
-    }
-
-    for (const person of people) {
-      const cluster: string[] = [];
-
-      for (const contact of person.contacts) {
-        if (infectedContacts[contact] > 2) {
-          cluster.push(contact);
-        }
-      }
-
-      if (cluster.length > 0) {
+      if (!visited.has(person.svnr) && person.sickInformation.sick) {
+        const cluster: string[] = this.getCluster(person, people, visited);
         clusters.push(cluster);
       }
     }
 
-    const clusterCount = clusters.length;
-
-    return {clusters, clusterCount};
+    return {
+      clusters,
+      clusterCount: clusters.length,
+    };
   }
 
   private getCluster(person: Person, people: Person[], visited: Set<number>): string[] {
